@@ -64,7 +64,7 @@ const ChipContainer = () => {
     (e) => {
       e?.stopPropagation();
 
-      if (e?.code === "Backspace" && userInputRef?.current?.value === "") {
+      if (e?.keyCode === 8 && userInputRef?.current?.value === "") {
         userInputRef?.current?.blur();
         if (highlightedUser?.id) {
           removeSelectedUser(highlightedUser, true);
