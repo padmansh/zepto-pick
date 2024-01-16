@@ -1,16 +1,64 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Chip from "./Chip";
 import UserDropdownItem from "./UserDropdownItem";
+import Avatar1 from "../Icons/Avatar1";
+import Avatar2 from "../Icons/Avatar2";
+import Avatar3 from "../Icons/Avatar3";
+import Avatar4 from "../Icons/Avatar4";
+import Avatar5 from "../Icons/Avatar5";
+import Avatar6 from "../Icons/Avatar6";
+import Avatar7 from "../Icons/Avatar7";
+import Avatar8 from "../Icons/Avatar8";
 
 const userList = [
-  { id: 1, name: "User name 1", email: "user1@example.com" },
-  { id: 2, name: "User name 2", email: "user2@example.com" },
-  { id: 3, name: "User name 3", email: "user3@example.com" },
-  { id: 4, name: "User name 4", email: "user4@example.com" },
-  { id: 5, name: "User name 5", email: "user5@example.com" },
-  { id: 6, name: "User name 6", email: "user6@example.com" },
-  { id: 7, name: "User name 7", email: "user7@example.com" },
-  { id: 8, name: "User name 8", email: "user8@example.com" },
+  {
+    id: 1,
+    name: "Mary Baker",
+    email: "mary.baker@example.com",
+    avatar: Avatar1,
+  },
+  {
+    id: 2,
+    name: "Eunice Kennedy",
+    email: "eunice.kennedy@example.com",
+    avatar: Avatar2,
+  },
+  {
+    id: 3,
+    name: "Harriet Tubman",
+    email: "harriet.tubman@example.com",
+    avatar: Avatar3,
+  },
+  {
+    id: 4,
+    name: "Wilma Mankiller",
+    email: "wilma.mankiller@example.com",
+    avatar: Avatar4,
+  },
+  {
+    id: 5,
+    name: "Mother Frances",
+    email: "mother.frances@example.com",
+    avatar: Avatar5,
+  },
+  {
+    id: 6,
+    name: "Fannie Lou",
+    email: "fannie.lou@example.com",
+    avatar: Avatar6,
+  },
+  {
+    id: 7,
+    name: "Elizabeth Blackwell",
+    email: "elizabeth.blackwell@example.com",
+    avatar: Avatar7,
+  },
+  {
+    id: 8,
+    name: "Rosalyn Yalow",
+    email: "rosalyn.yalow@example.com",
+    avatar: Avatar8,
+  },
 ];
 
 const ChipContainer = () => {
@@ -64,6 +112,7 @@ const ChipContainer = () => {
         setHighLightedUser(remaining?.[remaining?.length - 1]);
       } else {
         setHighLightedUser({});
+        setTimeout(() => userInputRef?.current?.focus(), 0);
       }
     },
     [selectedUsers, dropdownUsers, listSort]

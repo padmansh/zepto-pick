@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "zepto-purple": "#3C006B",
+        grey: "#e4e4e4",
       },
     },
   },
