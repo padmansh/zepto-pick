@@ -57,7 +57,7 @@ const ChipContainer = () => {
         setHighLightedUser({});
       }
     },
-    [selectedUsers, dropdownUsers]
+    [selectedUsers, dropdownUsers, listSort]
   );
 
   const handleKeyInput = useCallback(
@@ -73,7 +73,7 @@ const ChipContainer = () => {
         }
       }
     },
-    [selectedUsers, highlightedUser]
+    [selectedUsers, highlightedUser, removeSelectedUser]
   );
 
   const chipMap = useCallback(
@@ -85,7 +85,7 @@ const ChipContainer = () => {
         highlightedUser={highlightedUser}
       />
     ),
-    [selectedUsers, removeSelectedUser, highlightedUser]
+    [removeSelectedUser, highlightedUser]
   );
 
   const userDropdownItemMap = useCallback(
@@ -101,7 +101,7 @@ const ChipContainer = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyInput);
     };
-  }, [highlightedUser, selectedUsers]);
+  }, [handleKeyInput]);
 
   return (
     <div className="border-b-[4px] border-zepto-purple py-1">
@@ -117,7 +117,10 @@ const ChipContainer = () => {
               className="w-full flex focus:outline-none"
               placeholder="Add new user"
               value={inputValue}
-              onChange={(e) => setInputValue(e?.target?.value)}
+              onChange={(e) => {
+                setInputValue(e?.target?.value);
+                setHighLightedUser({});
+              }}
               onKeyDown={handleKeyInput}
             />
           ) : null}
