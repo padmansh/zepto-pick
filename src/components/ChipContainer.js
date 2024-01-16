@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Chip from "./Chip";
 import UserDropdownItem from "./UserDropdownItem";
 
@@ -20,6 +20,16 @@ const ChipContainer = () => {
   const [dropdownUsers, setDropdownUsers] = useState(userList);
   const [inputValue, setInputValue] = useState("");
   const [highlightedUser, setHighLightedUser] = useState({});
+
+  const searchedDropdownUsers = useMemo(
+    () =>
+      dropdownUsers?.filter(
+        (user) =>
+          user?.name?.toLowerCase()?.includes(inputValue) ||
+          user?.email?.toLowerCase()?.includes(inputValue)
+      ),
+    [dropdownUsers, inputValue]
+  );
 
   const listSort = useCallback((a, b) => {
     if (a?.id < b?.id) {
@@ -53,7 +63,6 @@ const ChipContainer = () => {
       if (deleteFromBackspace) {
         setHighLightedUser(remaining?.[remaining?.length - 1]);
       } else {
-        userInputRef?.current?.focus();
         setHighLightedUser({});
       }
     },
@@ -127,7 +136,7 @@ const ChipContainer = () => {
 
           {showDropdown ? (
             <div className="absolute min-w-full max-w-max bg-white shadow-md max-h-[208px] overflow-scroll rounded-sm flex flex-col">
-              {dropdownUsers?.map(userDropdownItemMap)}
+              {searchedDropdownUsers?.map(userDropdownItemMap)}
             </div>
           ) : null}
         </div>

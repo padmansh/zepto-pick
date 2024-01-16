@@ -13,7 +13,13 @@ const Chip = ({ user, removeSelectedUser, highlightedUser }) => {
         {user?.name}
       </div>
 
-      <div className="cursor-pointer" onClick={() => removeSelectedUser(user)}>
+      <div
+        className="cursor-pointer"
+        onMouseDown={(e) => {
+          e?.preventDefault();
+          removeSelectedUser(user);
+        }}
+      >
         <CrossIcon size={20} />
       </div>
     </div>
